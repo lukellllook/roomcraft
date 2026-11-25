@@ -6,7 +6,7 @@ import './scene3d.scss'
 
 /**
  * H5 房间场景页：three.js 实时渲染 + preview 同款交互。
- * 小程序 / RN 暂不支持该 WebGL 页面。
+ * RN 暂不支持该 WebGL 页面。
  */
 export default function Scene() {
   const started = useRef(false)

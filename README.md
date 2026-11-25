@@ -4,7 +4,7 @@
 [![three.js](https://img.shields.io/badge/three.js-0.128-black)](https://threejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
-一款基于 **Taro + three.js** 的 3D 房间布置小游戏 Demo：一套源码构建 H5 / 微信小程序（web-view），并保留 App(RN) 构建配置。从一间空房开始，加房间、改户型、铺地面、摆家具、给每件东西换色，顺手做一件只属于你的家具，最后导出 2D 平面图或整本 PDF。
+一款基于 **Taro + three.js** 的 3D 房间布置小游戏 Demo：构建为 H5 网页，并保留 App(RN) 构建配置。从一间空房开始，加房间、改户型、铺地面、摆家具、给每件东西换色，顺手做一件只属于你的家具，最后导出 2D 平面图或整本 PDF。
 
 所有房间、家具、门窗与材质均由代码实时生成，**不依赖任何外部图片或版权素材**。
 
@@ -81,12 +81,10 @@ npm run dev:h5
 | `npm run build:h5` | H5 生产构建 | `dist/` |
 | `npm run build:h5:deploy` | H5 部署构建，输出到独立目录 | `dist-h5/` |
 | `npm run build:h5:pages` | GitHub Pages 构建（含 SEO 收尾） | `dist-h5/` |
-| `npm run dev:weapp` | 微信小程序开发模式 | `dist/` |
-| `npm run build:weapp` | 微信小程序生产构建 | `dist/` |
 | `npm run dev:rn` | React Native 开发模式（未完善） | — |
 | `npm run build:rn` | React Native 构建（未完善） | — |
 
-> `build:h5` 与 `build:weapp` 默认都写入 `dist/`，交替构建前建议清理。部署 H5 时使用 `build:h5:deploy`，输出到 `dist-h5/` 可避免覆盖小程序产物。
+> `build:h5:pages` 输出到 `dist-h5/`，与 `build:h5` 的 `dist/` 互不覆盖。
 
 ## 部署
 
@@ -114,19 +112,6 @@ npx serve dist-h5
 
 H5 使用 hash 路由，静态托管无需额外的 404 回退。若仓库名为 `<username>.github.io`（用户主页），工作流会自动改用根路径。
 
-### 微信小程序
-
-小程序运行时没有 WebGL / DOM，因此小程序端通过 **web-view 内嵌已部署的 H5**：
-
-1. 在项目根目录 `.env` 中填写：
-
-   ```bash
-   TARO_APP_H5_URL=https://你的域名/
-   ```
-
-2. 执行 `npm run build:weapp`，用微信开发者工具导入项目根目录（`miniprogramRoot` 指向 `dist/`）。
-3. 在小程序后台将 H5 域名加入 **web-view 业务域名**（HTTPS、已备案）。
-
 ### App / RN
 
 RN 构建脚本已保留，但依赖与适配尚未接入，当前不可用。
@@ -146,28 +131,25 @@ RN 构建脚本已保留，但依赖与适配尚未接入，当前不可用。
 
 ```
 .
-├── config/                          # Taro 三端构建配置（h5 / mini / rn）
+├── config/                          # Taro 构建配置（h5 / rn）
 │   ├── index.ts
 │   ├── dev.ts
 │   └── prod.ts
 ├── src/
 │   ├── app.ts
-│   ├── app.config.ts                # 页面路由：H5 场景页 / 小程序 web-view 页
+│   ├── app.config.ts                # 页面路由
 │   ├── app.scss
 │   ├── index.html
 │   └── pages/
-│       ├── scene/
-│       │   ├── index.tsx            # 页面结构：大厅、HUD、房间标签、操作栏、仓库 / 工坊
-│       │   ├── engine.ts            # 3D 场景引擎与全部交互逻辑（three.js）
-│       │   ├── floorplanFurniture.ts # 家具库、模型与材质工厂
-│       │   └── scene3d.scss         # 满屏自适应舞台样式
-│       └── room-webview/            # 小程序端：web-view 内嵌已部署的 H5
+│       └── scene/
+│           ├── index.tsx            # 页面结构：大厅、HUD、房间标签、操作栏、仓库 / 工坊
+│           ├── engine.ts            # 3D 场景引擎与全部交互逻辑（three.js）
+│           ├── floorplanFurniture.ts # 家具库、模型与材质工厂
+│           └── scene3d.scss         # 满屏自适应舞台样式
 ├── .github/workflows/deploy-pages.yml # GitHub Pages 自动部署
 ├── scripts/
 │   └── seo-postbuild.mjs            # 注入 SITE_URL、生成 robots / sitemap / .nojekyll
-├── .env                             # 小程序端 H5 地址（TARO_APP_H5_URL）
 ├── .screenshots/                    # README 与 OG 分享图
-├── project.config.json              # 微信开发者工具项目配置
 └── package.json
 ```
 
@@ -195,7 +177,6 @@ MYHOME0:<base64url(JSON)>            # 未压缩兜底
 ## 已知限制
 
 - 布置数据只保存在当前页面内，刷新后不保留（DIY 作品库除外，存于 `localStorage`）。
-- 小程序端通过 web-view 复用 H5，3D 场景并不在小程序运行时内渲染，需要已备案的 HTTPS 域名。
 - RN 端脚本保留，但依赖未接入、未做验证。
 - `src/pages/scene/engine.ts` 由早期单文件 Demo 迁移而来，顶部暂时保留 `@ts-nocheck`。
 

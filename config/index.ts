@@ -16,7 +16,7 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       375: 2
     },
     sourceRoot: 'src',
-    // 部署 H5 到静态托管时用 TARO_OUTPUT_ROOT 指定独立目录，避免覆盖小程序的 dist
+    // 部署 H5 到静态托管时用 TARO_OUTPUT_ROOT 指定独立目录
     outputRoot: process.env.TARO_OUTPUT_ROOT || 'dist',
     plugins: [],
     defineConstants: {},
@@ -31,23 +31,6 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
     },
     cache: {
       enable: false
-    },
-    mini: {
-      postcss: {
-        pxtransform: {
-          enable: true,
-          config: {}
-        },
-        url: {
-          enable: true,
-          config: {
-            limit: 1024
-          }
-        },
-        cssModules: {
-          enable: false
-        }
-      }
     },
     h5: {
       // GitHub Pages 项目页部署在 /<仓库名>/ 子路径下，构建时用 TARO_PUBLIC_PATH 注入
