@@ -1,19 +1,29 @@
 [简体中文](README.md) | English
 
-# RoomCraft · 房间工坊
+# Shenzhen Village House Guide
 
 [![Taro](https://img.shields.io/badge/Taro-4.3.2-07c160)](https://taro.zone/)
 [![three.js](https://img.shields.io/badge/three.js-0.128-black)](https://threejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
-A 3D room layout mini-game demo built with **Taro + three.js**: it is bundled as an H5 web page while keeping the App (RN) build configuration. Start from an empty room, add rooms, change the floor plan, lay flooring, place furniture, recolor every item, craft a piece of furniture that is entirely your own, and finally export a 2D floor plan or a full PDF booklet.
+A 3D renovation guide for the **urban villages and village houses of Shenzhen**, built with **Taro + three.js** as an H5 web app while keeping the App (RN) build configuration.
+
+It recreates the conditions you actually find in these homes — narrow bays, deep plans, fixed door and window positions, tiled wall skirts, tiny kitchens and bathrooms, and balconies doubling as laundry rooms. Adjust room sizes, lay wall and floor tiles, and place furniture at real dimensions to test out the classic layout problems: a bed right at the entrance, a blocked corridor, a wardrobe door that will not open, or simply not enough storage. Export the result as a 2D floor plan or a full PDF booklet.
 
 All rooms, furniture, doors, windows, and materials are generated in real time by code, **with no reliance on any external images or copyrighted assets**.
 
-![RoomCraft full-home 3D layout interface](./.screenshots/desktop-1440x900.png)
+![Shenzhen Village House Guide 3D renovation interface](./.screenshots/desktop-1440x900.png)
 
 <!-- 部署后替换成你的在线地址 -->
 <!-- 在线体验：https://<username>.github.io/roomcraft/ -->
+
+## What This Guide Covers
+
+- **Narrow bays, deep plans**: furniture mostly lines up along one wall — lock the bed and wardrobe first, then think about a sofa or dining table.
+- **Fixed doors and windows**: behind the door, under the window, and the AC position are hard boundaries; a 5 cm error can mean a door hitting a cabinet.
+- **Tiny kitchens and bathrooms**: white tile wall skirts and 300 mm anti-slip floor tiles are standard, so counters, squat toilets, and water heaters must be laid out to the centimetre.
+- **Multi-purpose balconies**: laundry, drying, and a temporary kitchen share one strip, so the circulation needs room for a person to turn around.
+- **Storage first**: full-height cabinets, under-bed space, and wall shelves often solve crowding better than replacing the furniture itself.
 
 ## Features
 

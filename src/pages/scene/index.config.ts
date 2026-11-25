@@ -1,5 +1,5 @@
 export default definePageConfig({
-  navigationBarTitleText: 'RoomCraft · 房间工坊 | 在线 3D 家居设计与户型布置小游戏',
+  navigationBarTitleText: '农民房装修指南 | 城中村户型改造与家具摆放 3D 工具',
   backgroundColor: '#141317',
   disableScroll: true
 })

@@ -2,7 +2,7 @@
   "name": "roomcraft",
   "version": "0.1.0",
   "private": true,
-  "description": "RoomCraft · 房间工坊 —— 基于 Taro + three.js 的 3D 房间布置小游戏 demo",
+  "description": "农民房装修指南 —— 面向城中村 / 农民房的 3D 户型改造与家具摆放工具（Taro + three.js）",
   "templateInfo": {
     "name": "default",
     "typescript": true,

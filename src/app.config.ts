@@ -3,7 +3,7 @@ export default defineAppConfig({
   window: {
     backgroundTextStyle: 'dark',
     navigationBarBackgroundColor: '#1b1a1f',
-    navigationBarTitleText: 'RoomCraft · 房间工坊',
+    navigationBarTitleText: '农民房装修指南',
     navigationBarTextStyle: 'white',
     backgroundColor: '#141317'
   }

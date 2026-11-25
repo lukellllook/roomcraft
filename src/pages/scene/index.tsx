@@ -36,16 +36,16 @@ export default function Scene() {
             <div className='lobby-mat' />
           </div>
           <div className='lobby-copy'>
-            <span className='lobby-kicker'>ROOMCRAFT · DECOR</span>
-            <h1 className='lobby-title'>我的家</h1>
+            <span className='lobby-kicker'>城中村 · 农民房改造</span>
+            <h1 className='lobby-title'>农民房装修指南</h1>
             <span className='lobby-sub'>
-              多个房间一起布置，墙面、地板、门窗和家具都能换色，
+              窄开间、长进深、门窗位置动不了，是农民房的常态。
               <br />
-              也能自己动手做一件新家具。
+              调户型、铺墙地砖、按实际尺寸摆家具，把每一平米都用起来。
             </span>
           </div>
           <button className='enter-btn' id='enterBtn'>
-            <span>进入房间</span>
+            <span>开始改造</span>
             <i className='enter-arrow' />
           </button>
           <div className='lobby-meta' id='lobbyMeta' />
@@ -61,8 +61,8 @@ export default function Scene() {
 
           <div className='hud'>
             <div className='hud-left'>
-              <span className='hud-room'>ROOMCRAFT</span>
-              <span className='hud-name'>MY HOME / 我的家</span>
+              <span className='hud-room'>城中村</span>
+              <span className='hud-name'>农民房装修指南 / 城中村户型</span>
             </div>
             <div className='hud-right'>
               <span className='hud-count' id='hudCount' />
@@ -101,7 +101,7 @@ export default function Scene() {
           <div className='hud-hint' id='hudHint'>
             <div className='hud-hint-dot' />
             <span className='hud-hint-text'>
-              点房间布置 · 拖地板挪房间 · 拖空白转视角 · 滚轮/双指缩放平移
+              点房间改造 · 拖地板挪房间 · 拖空白转视角 · 滚轮/双指缩放平移
             </span>
           </div>
 

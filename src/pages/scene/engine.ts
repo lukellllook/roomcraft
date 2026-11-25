@@ -81,7 +81,7 @@ export function initRoomScene() {
       const DIY_PACKED = 'MYDIY1:'
       const DIY_PLAIN = 'MYDIY0:'
 
-      /* 默认装修：深圳城中村经典旧屋风格 —— 泛黄白墙 + 旧米灰地砖 + 发灰铝合金窗 + 深红棕铁门 */
+      /* 默认装修：城中村经典旧屋风格 —— 泛黄白墙 + 旧米灰地砖 + 发灰铝合金窗 + 深红棕铁门 */
       const SCENE_PARTS = {
         wall: { name: '墙面', tag: '结构', tones: ['#e4ded0', '#ddd6c6', '#d6cfbe', '#cfc7b5'] },
         floor: { name: '地板', tag: '结构', tones: ['#c2b8a4', '#b8ad97', '#aea28b', '#a4977f'] },
@@ -2469,7 +2469,7 @@ export function initRoomScene() {
 
       function renderHUD() {
         hudCount.textContent = activeRoom().name + ' · 家具 ' + placed.length
-        lobbyMeta.textContent = '家里有 ' + rooms.length + ' 个房间 · 点选任何元素都能编辑'
+        lobbyMeta.textContent = '已排 ' + rooms.length + ' 间房 · 点选任何元素都能编辑'
         hudHint.classList.toggle('is-hidden', hintDismissed)
         renderRoomTabs()
         scheduleHistory()
@@ -2930,9 +2930,9 @@ export function initRoomScene() {
           dock.innerHTML =
             '<div class="dock-row">' +
               '<div>' +
-                '<span class="dock-name" style="font-size:12px">布置模式</span>' +
+                '<span class="dock-name" style="font-size:12px">改造模式</span>' +
                 '<div class="dock-sub" style="margin-top:4px">' +
-                  (overviewMode ? '点房间布置 · 拖动家具 · 色盘换色' : '拖动家具 · 色盘换色 · 选布局或自定义尺寸') +
+                  (overviewMode ? '点房间改造 · 拖动家具 · 色盘换色' : '拖动家具 · 色盘换色 · 选布局或自定义尺寸') +
                 '</div>' +
               '</div>' +
               '<div class="dock-acts">' +
@@ -4542,7 +4542,7 @@ export function initRoomScene() {
         g.drawImage(img, bx + (bw - iw) / 2, by + (bh - ih) / 2, iw, ih)
         g.fillStyle = '#b3a898'
         g.font = planFont(12, 500)
-        g.fillText(tr('我的家 · 室内方案'), 80, PH - 48)
+        g.fillText(tr('农民房改造 · 平面方案'), 80, PH - 48)
         g.textAlign = 'right'
         g.fillText(pageNo + ' / ' + total, PW - 80, PH - 48)
         return c
@@ -4691,7 +4691,7 @@ export function initRoomScene() {
             '<span class="share-btn" data-share="pdf">保存 PDF</span>' +
           '</div>' +
           '<div class="share-code" id="shareCode">正在生成分享码…</div>' +
-          '<div class="share-tip">分享包是一个 zip，内含分享码文本和预览图。对方在「导入布置」粘贴分享码即可还原整个家。</div>'
+          '<div class="share-tip">分享包是一个 zip，内含分享码文本和预览图。对方在「导入布置」粘贴分享码即可还原整套农民房。</div>'
         packShareCode().then(code => {
           if (shareMode !== 'export') return
           shareCode = code
@@ -4711,7 +4711,7 @@ export function initRoomScene() {
           '<div class="share-actions">' +
             '<span class="share-btn share-btn--main" data-share="code">导入分享码</span>' +
           '</div>' +
-          '<div class="share-tip">分享码由「导出布置 → 复制分享码 / 保存分享包」获得；导入会替换当前布置，并清空撤销记录。</div>'
+          '<div class="share-tip">分享码由「导出布置 → 复制分享码 / 保存分享包」获得；导入会替换当前改造方案，并清空撤销记录。</div>'
       }
 
       /* ---------- DIY 作品库导出 / 导入 ---------- */
@@ -4757,7 +4757,7 @@ export function initRoomScene() {
           '<div class="share-actions">' +
             '<span class="share-btn share-btn--main" data-share="diy-code">导入作品库</span>' +
           '</div>' +
-          '<div class="share-tip">导入只会把作品合并进作品库，不会改动房间里的布置。</div>'
+          '<div class="share-tip">导入只会把作品合并进作品库，不会改动当前的改造方案。</div>'
       }
 
       function applyDiyLibrary(raw) {
@@ -4944,22 +4944,22 @@ export function initRoomScene() {
         const code = shareCode || (await packShareCode())
         const stamp = fileStamp()
         const text = [
-          '我的家 · 布置分享码',
+          '农民房改造 · 布置分享码',
           '生成时间：' + stamp,
           '',
           code,
           '',
-          '导入方法：打开「我的家」→ 右上角菜单 → 导入布置，粘贴上面的分享码即可还原。'
+          '导入方法：打开「农民房装修指南」→ 右上角菜单 → 导入布置，粘贴上面的分享码即可还原。'
         ].join('\n')
         const bytes = zipStore([
-          { name: 'my-home-share-' + stamp + '.txt', data: new TextEncoder().encode(text) },
-          { name: 'my-home-preview-' + stamp + '.png', data: dataUrlBytes(sharePreview) }
+          { name: 'village-house-share-' + stamp + '.txt', data: new TextEncoder().encode(text) },
+          { name: 'village-house-preview-' + stamp + '.png', data: dataUrlBytes(sharePreview) }
         ])
         const blob = new Blob([bytes], { type: 'application/zip' })
         const url = URL.createObjectURL(blob)
         const link = document.createElement('a')
         link.href = url
-        link.download = 'my-home-' + stamp + '.zip'
+        link.download = 'village-house-' + stamp + '.zip'
         document.body.appendChild(link)
         link.click()
         link.remove()
@@ -5024,7 +5024,7 @@ export function initRoomScene() {
         lastSnapshot = snapshotState()
         lastSnapshotKey = JSON.stringify(lastSnapshot)
         updateUndoBtn()
-        showToast('已导入 ' + list.length + ' 个房间')
+        showToast('已导入 ' + list.length + ' 间房')
       }
 
       function renderAll() {

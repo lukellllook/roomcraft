@@ -6,22 +6,16 @@
       name="viewport"
       content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
     />
-    <script>
-      // 兼容旧版 hash 链接：打开 #/pages/... 时自动还原为干净地址
-      if (location.hash.indexOf('#/pages/') === 0) {
-        history.replaceState(null, '', location.pathname + location.search)
-      }
-    </script>
-    <title>RoomCraft · 房间工坊 | 在线 3D 家居设计与户型布置小游戏</title>
+    <title>农民房装修指南 | 城中村户型改造与家具摆放在线 3D 工具</title>
     <meta
       name="description"
-      content="RoomCraft 房间工坊是一款免费的在线 3D 家居设计小游戏：自由添加房间、调整户型尺寸、铺贴瓷砖与木地板、摆放和 DIY 家具，支持换色、撤销、分享码导入导出，并可导出 2D 平面图与 PDF。基于 Taro + three.js，打开浏览器即可游玩。"
+      content="农民房装修指南是一个免费的在线 3D 城中村改造工具：还原农民房窄开间、长进深、门窗固定、墙脚贴瓷片的真实条件，自由调整房间尺寸、铺贴墙地砖、按实际尺寸摆放家具，解决小户型进门见床、走道拥堵、收纳不足等摆放难题，并支持分享码与 2D 平面图 / PDF 导出。"
     />
     <meta
       name="keywords"
-      content="RoomCraft,房间工坊,房间布置,3D 家居设计,户型设计,室内设计小游戏,装修模拟,家具摆放,平面图导出,three.js,Taro,开源项目"
+      content="农民房装修,城中村,城中村改造,农民房户型,握手楼,小户型家具摆放,3D 户型设计,装修模拟,平面图导出,three.js,Taro,开源项目"
     />
-    <meta name="author" content="RoomCraft contributors" />
+    <meta name="author" content="农民房装修指南 contributors" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="theme-color" content="#141317" />
     <link rel="canonical" href="__SITE_URL__" />
@@ -32,25 +26,25 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="RoomCraft · 房间工坊" />
+    <meta property="og:site_name" content="农民房装修指南" />
     <meta property="og:locale" content="zh_CN" />
-    <meta property="og:title" content="RoomCraft · 房间工坊 | 在线 3D 家居设计与户型布置小游戏" />
+    <meta property="og:title" content="农民房装修指南 | 城中村户型改造与家具摆放在线 3D 工具" />
     <meta
       property="og:description"
-      content="免费在线 3D 房间布置：加房间、改户型、铺地板、摆家具、DIY 家具，支持分享码与 2D 平面图 / PDF 导出。"
+      content="城中村农民房 3D 改造工具：调户型、铺墙地砖、按实际尺寸摆家具，解决小户型进门见床、走道拥堵、收纳不足等摆放难题，支持分享码与平面图 / PDF 导出。"
     />
     <meta property="og:url" content="__SITE_URL__" />
     <meta property="og:image" content="__OG_IMAGE__" />
     <meta property="og:image:width" content="1440" />
     <meta property="og:image:height" content="900" />
-    <meta property="og:image:alt" content="RoomCraft 房间工坊 3D 全屋布置界面" />
+    <meta property="og:image:alt" content="农民房装修指南 3D 城中村户型改造界面" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="RoomCraft · 房间工坊 | 在线 3D 家居设计小游戏" />
+    <meta name="twitter:title" content="农民房装修指南 | 城中村 3D 改造工具" />
     <meta
       name="twitter:description"
-      content="免费在线 3D 房间布置：加房间、改户型、铺地板、摆家具、DIY 家具，支持分享码与 2D 平面图 / PDF 导出。"
+      content="城中村农民房 3D 改造工具：调户型、铺墙地砖、按实际尺寸摆家具，解决小户型摆放难题，支持分享码与平面图 / PDF 导出。"
     />
     <meta name="twitter:image" content="__OG_IMAGE__" />
 
@@ -58,9 +52,9 @@
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "RoomCraft · 房间工坊",
+        "name": "农民房装修指南",
         "url": "__SITE_URL__",
-        "description": "免费的在线 3D 家居设计与户型布置小游戏，支持多房间户型、家具摆放、DIY 家具、分享码导入导出、2D 平面图与 PDF 导出。",
+        "description": "免费的在线 3D 城中村改造工具：还原农民房的窄开间、长进深与固定门窗，支持调整户型、铺贴墙地砖、按实际尺寸摆放家具，解决小户型摆放难题，并可导出 2D 平面图与 PDF。",
         "image": "__OG_IMAGE__",
         "applicationCategory": "DesignApplication",
         "operatingSystem": "Web",
@@ -80,8 +74,8 @@
     <div id="app"></div>
     <noscript>
       <div style="max-width: 640px; margin: 0 auto; padding: 48px 24px; background: #141317; color: #eae4d8; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; line-height: 1.8">
-        <h1>RoomCraft · 房间工坊</h1>
-        <p>免费的在线 3D 家居设计与户型布置小游戏：添加房间、调整户型尺寸、铺贴瓷砖与木地板、摆放和 DIY 家具，支持分享码导入导出、2D 平面图与 PDF 导出。</p>
+        <h1>农民房装修指南</h1>
+        <p>免费的在线 3D 城中村改造工具：还原农民房的窄开间、长进深与固定门窗，调整户型尺寸、铺贴墙地砖、按实际尺寸摆放家具，解决小户型摆放难题，支持分享码导入导出、2D 平面图与 PDF 导出。</p>
         <p>本应用需要启用 JavaScript 并使用支持 WebGL 的现代浏览器（Chrome、Edge、Safari、Firefox）。</p>
       </div>
     </noscript>

@@ -66,7 +66,7 @@ await writeFile(
     `<html lang="zh-CN">\n` +
     `<head>\n` +
     `  <meta charset="utf-8">\n` +
-    `  <title>RoomCraft</title>\n` +
+    `  <title>农民房装修指南</title>\n` +
     `  <script>location.replace(${JSON.stringify(siteUrl)})</script>\n` +
     `  <noscript><meta http-equiv="refresh" content="0;url=${siteUrl}"></noscript>\n` +
     `</head>\n` +

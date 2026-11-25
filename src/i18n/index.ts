@@ -55,7 +55,7 @@ export function setLang(next: Lang): void {
   }
   if (typeof document === 'undefined') return
   document.documentElement.lang = next === 'en' ? 'en' : 'zh-CN'
-  document.title = next === 'en' ? 'RoomCraft · 3D Room Planner' : 'RoomCraft · 房间工坊'
+  document.title = next === 'en' ? 'Shenzhen Village House Guide · 3D Renovation Planner' : '农民房装修指南 · 城中村 3D 改造'
   if (document.body) walk(document.body)
 }
 
@@ -142,7 +142,7 @@ function render(el: Element): void {
 export function installDomI18n(): void {
   if (typeof document === 'undefined' || typeof MutationObserver === 'undefined') return
   document.documentElement.lang = current === 'en' ? 'en' : 'zh-CN'
-  if (current === 'en') document.title = 'RoomCraft · 3D Room Planner'
+  if (current === 'en') document.title = 'Shenzhen Village House Guide · 3D Renovation Planner'
 
   const start = () => {
     if (!document.body) return
