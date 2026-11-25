@@ -59,5 +59,21 @@ await writeFile(
 /* 让 GitHub Pages 跳过 Jekyll 处理，避免下划线开头的文件被忽略 */
 await writeFile(join(outDir, '.nojekyll'), '', 'utf8')
 
+/* 浏览器路由的单页回退：刷新任意子路径时回到首页，避免 GitHub Pages 404 */
+await writeFile(
+  join(outDir, '404.html'),
+  `<!doctype html>\n` +
+    `<html lang="zh-CN">\n` +
+    `<head>\n` +
+    `  <meta charset="utf-8">\n` +
+    `  <title>RoomCraft</title>\n` +
+    `  <script>location.replace(${JSON.stringify(siteUrl)})</script>\n` +
+    `  <noscript><meta http-equiv="refresh" content="0;url=${siteUrl}"></noscript>\n` +
+    `</head>\n` +
+    `<body></body>\n` +
+    `</html>\n`,
+  'utf8'
+)
+
 console.log(`[seo] 已写入 ${siteUrl}`)
-console.log(`[seo] 产物目录：${outDir}（robots.txt / sitemap.xml / og-cover.png / .nojekyll）`)
+console.log(`[seo] 产物目录：${outDir}（robots.txt / sitemap.xml / og-cover.png / .nojekyll / 404.html）`)

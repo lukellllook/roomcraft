@@ -38,8 +38,13 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       staticDirectory: 'static',
       esnextModules: [],
       router: {
-        // 静态托管（GitHub Pages）没有服务端回退，hash 路由可避免刷新子路径 404
-        mode: 'hash'
+        // 单页应用使用浏览器路由，网址不显示 #；404.html 负责刷新回退。
+        // 把页面路径的别名设为 /，避免 Taro 启动时把地址改写成 /pages/scene/index。
+        mode: 'browser',
+        basename: (process.env.TARO_PUBLIC_PATH || '/').replace(/\/$/, ''),
+        customRoutes: {
+          '/pages/scene/index': '/'
+        }
       },
       postcss: {
         // 舞台按 375×600 固定尺寸绘制，家具位置由 JS 写入 px；
