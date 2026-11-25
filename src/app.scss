@@ -1,0 +1,19 @@
+page,
+body {
+  margin: 0;
+  padding: 0;
+  background: #141317;
+  color: #eae4d8;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* WXSS 不支持通配符选择器，这里只重置基础元素 */
+page,
+body,
+view,
+text,
+image,
+scroll-view {
+  box-sizing: border-box;
+}

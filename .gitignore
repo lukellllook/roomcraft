@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-h5/
+.temp/
+.rn_temp/
+.swc/
+*.log
+.DS_Store
+.env
+.screenshots/*
+!.screenshots/desktop-1440x900.png

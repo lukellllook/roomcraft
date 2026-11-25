@@ -1,0 +1,69 @@
+name: Deploy H5 to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Resolve Pages URL
+        id: site
+        run: |
+          repo="${{ github.event.repository.name }}"
+          owner="${{ github.repository_owner }}"
+          if [ "$repo" = "$owner.github.io" ]; then
+            printf 'url=https://%s.github.io/\n' "$owner" >> "$GITHUB_OUTPUT"
+            printf 'base=/\n' >> "$GITHUB_OUTPUT"
+          else
+            printf 'url=https://%s.github.io/%s/\n' "$owner" "$repo" >> "$GITHUB_OUTPUT"
+            printf 'base=/%s/\n' "$repo" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build H5 with SEO
+        run: npm run build:h5:pages
+        env:
+          TARO_PUBLIC_PATH: ${{ steps.site.outputs.base }}
+          SITE_URL: ${{ steps.site.outputs.url }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-h5
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

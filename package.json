@@ -1,0 +1,60 @@
+{
+  "name": "roomcraft",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RoomCraft · 房间工坊 —— 一套源码构建 H5 / 微信小程序 / App(RN) 的房间布置小游戏 demo",
+  "templateInfo": {
+    "name": "default",
+    "typescript": true,
+    "css": "sass",
+    "framework": "react"
+  },
+  "scripts": {
+    "dev:h5": "taro build --type h5 --watch",
+    "build:h5": "taro build --type h5",
+    "build:h5:deploy": "TARO_OUTPUT_ROOT=dist-h5 taro build --type h5",
+    "build:h5:pages": "TARO_OUTPUT_ROOT=dist-h5 taro build --type h5 && node scripts/seo-postbuild.mjs",
+    "dev:weapp": "taro build --type weapp --watch",
+    "build:weapp": "taro build --type weapp",
+    "dev:rn": "taro build --type rn --watch",
+    "build:rn": "taro build --type rn"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.24.4",
+    "@tarojs/components": "4.3.2",
+    "@tarojs/helper": "4.3.2",
+    "@tarojs/plugin-framework-react": "4.3.2",
+    "@tarojs/plugin-platform-h5": "4.3.2",
+    "@tarojs/plugin-platform-weapp": "4.3.2",
+    "@tarojs/react": "4.3.2",
+    "@tarojs/router": "4.3.2",
+    "@tarojs/runtime": "4.3.2",
+    "@tarojs/shared": "4.3.2",
+    "@tarojs/taro": "4.3.2",
+    "fflate": "^0.8.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.128.0",
+    "threejs-miniprogram": "^0.0.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-react": "^7.29.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.17",
+    "@tarojs/cli": "4.3.2",
+    "@tarojs/webpack5-runner": "4.3.2",
+    "@types/react": "^18.3.3",
+    "@types/webpack-env": "^1.18.5",
+    "babel-preset-taro": "4.3.2",
+    "postcss": "^8.4.38",
+    "react-refresh": "^0.14.2",
+    "sass": "^1.77.0",
+    "typescript": "^5.5.4",
+    "webpack": "5.91.0"
+  }
+}
