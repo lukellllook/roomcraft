@@ -871,6 +871,19 @@
       }
       /* 右上角菜单 */
       .menu { position: relative; pointer-events: auto; }
+      .lang-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 4PX 10PX;
+        border-radius: 20PX;
+        background: rgba(40, 34, 28, 0.72);
+        color: #f0e8d8;
+        font-size: 9PX;
+        letter-spacing: 1PX;
+        cursor: pointer;
+        user-select: none;
+      }
+      .lang-btn:active { background: rgba(40, 34, 28, 0.9); }
       .menu-btn {
         display: inline-flex;
         align-items: center;

@@ -2,6 +2,7 @@
 /* 由 preview/index.html 的交互逻辑移植：H5 three.js 房间场景引擎 */
 import * as THREE from 'three'
 import { deflateSync, inflateSync } from 'fflate'
+import { tr } from '../../i18n'
 import {
   FLOORPLAN_CATALOG,
   FLOORPLAN_GROUPS,
@@ -3854,6 +3855,7 @@ export function initRoomScene() {
         ctx.fillRect(0, 0, W, H)
 
         const text = (str, x, y, font, color, align) => {
+          str = tr(str)
           ctx.font = font
           ctx.fillStyle = color
           ctx.textAlign = align || 'left'
@@ -4279,9 +4281,10 @@ export function initRoomScene() {
         ctx.lineWidth = 3.2
         ctx.strokeStyle = 'rgba(252, 251, 247, 0.88)'
         furnLabels.forEach(l => {
-          ctx.strokeText(l.name, l.x, l.y + 4)
+          const name = tr(l.name)
+          ctx.strokeText(name, l.x, l.y + 4)
           ctx.fillStyle = '#6b6154'
-          ctx.fillText(l.name, l.x, l.y + 4)
+          ctx.fillText(name, l.x, l.y + 4)
         })
         ctx.textAlign = 'left'
 
@@ -4294,9 +4297,10 @@ export function initRoomScene() {
           ctx.textAlign = 'center'
           ctx.lineWidth = 4
           ctx.strokeStyle = 'rgba(252, 251, 247, 0.92)'
-          ctx.strokeText(room.name, cx, cz - 2)
+          const roomLabel = tr(room.name)
+          ctx.strokeText(roomLabel, cx, cz - 2)
           ctx.fillStyle = '#2f2a23'
-          ctx.fillText(room.name, cx, cz - 2)
+          ctx.fillText(roomLabel, cx, cz - 2)
           const area = (room.w * room.d).toFixed(2) + ' m²'
           ctx.font = planFont(Math.max(11, labelSize - 8), 500)
           ctx.strokeText(area, cx, cz + labelSize * 0.95)
@@ -4518,10 +4522,10 @@ export function initRoomScene() {
         g.textAlign = 'left'
         g.fillStyle = '#2f2a23'
         g.font = planFont(36, 700)
-        g.fillText(title, 80, 116)
+        g.fillText(tr(title), 80, 116)
         g.fillStyle = '#8b8070'
         g.font = planFont(15, 500)
-        g.fillText(subtitle, 82, 148)
+        g.fillText(tr(subtitle), 82, 148)
         g.strokeStyle = '#d9d2c4'
         g.lineWidth = 1.5
         g.beginPath()
@@ -4538,7 +4542,7 @@ export function initRoomScene() {
         g.drawImage(img, bx + (bw - iw) / 2, by + (bh - ih) / 2, iw, ih)
         g.fillStyle = '#b3a898'
         g.font = planFont(12, 500)
-        g.fillText('我的家 · 室内方案', 80, PH - 48)
+        g.fillText(tr('我的家 · 室内方案'), 80, PH - 48)
         g.textAlign = 'right'
         g.fillText(pageNo + ' / ' + total, PW - 80, PH - 48)
         return c

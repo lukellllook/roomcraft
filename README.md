@@ -1,5 +1,7 @@
 # RoomCraft · 房间工坊
 
+[English](README.en.md) | 简体中文
+
 [![Taro](https://img.shields.io/badge/Taro-4.3.2-07c160)](https://taro.zone/)
 [![three.js](https://img.shields.io/badge/three.js-0.128-black)](https://threejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
@@ -26,6 +28,7 @@
 - three.js + WebGL 实时渲染，大厅推门进入、右上角退出。
 - 环绕旋转、滚轮 / 双指缩放、双指拖动或右键（`Shift` + 拖动）平移，右侧按钮可缩放与复位。
 - 桌面与手机布局自适应，触屏手势完整支持。
+- 内置中 / 英双语：HUD 右上角 `EN / 中文` 一键切换，偏好保存在本地，2D 平面图与 PDF 导出同步切换。
 
 ### 装修与家具
 
@@ -140,6 +143,7 @@ RN 构建脚本已保留，但依赖与适配尚未接入，当前不可用。
 │   ├── app.config.ts                # 页面路由
 │   ├── app.scss
 │   ├── index.html
+│   ├── i18n/                        # 中英词典与 DOM 实时翻译
 │   └── pages/
 │       └── scene/
 │           ├── index.tsx            # 页面结构：大厅、HUD、房间标签、操作栏、仓库 / 工坊

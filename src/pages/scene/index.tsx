@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
+import { getLang, installDomI18n, setLang, type Lang } from '../../i18n'
 import { initRoomScene } from './engine'
 
 import './scene3d.scss'
+
+installDomI18n()
 
 /**
  * H5 房间场景页：three.js 实时渲染 + preview 同款交互。
@@ -10,6 +13,7 @@ import './scene3d.scss'
  */
 export default function Scene() {
   const started = useRef(false)
+  const [lang, setLangState] = useState<Lang>(getLang())
 
   useEffect(() => {
     if (started.current) return
@@ -62,6 +66,17 @@ export default function Scene() {
             </div>
             <div className='hud-right'>
               <span className='hud-count' id='hudCount' />
+              <span
+                className='lang-btn'
+                data-i18n-skip
+                onClick={() => {
+                  const next = lang === 'zh' ? 'en' : 'zh'
+                  setLang(next)
+                  setLangState(next)
+                }}
+              >
+                {lang === 'zh' ? 'EN' : '中文'}
+              </span>
               <div className='menu' id='menu'>
                 <span className='menu-btn' id='menuBtn'>
                   菜单
