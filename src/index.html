@@ -6,6 +6,12 @@
       name="viewport"
       content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
     />
+    <script>
+      // 兼容旧版 hash 链接：打开 #/pages/... 时自动还原为干净地址
+      if (location.hash.indexOf('#/pages/') === 0) {
+        history.replaceState(null, '', location.pathname + location.search)
+      }
+    </script>
     <title>RoomCraft · 房间工坊 | 在线 3D 家居设计与户型布置小游戏</title>
     <meta
       name="description"
