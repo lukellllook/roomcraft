@@ -89,47 +89,6 @@ npm run dev:h5
 
 > `build:h5:pages` 输出到 `dist-h5/`，与 `build:h5` 的 `dist/` 互不覆盖。
 
-## 部署
-
-### H5 / GitHub Pages
-
-仓库内置 [deploy-pages.yml](.github/workflows/deploy-pages.yml)：推送到 `main` 分支（或手动触发 workflow）即可自动构建并发布到 GitHub Pages。
-
-首次部署前，在仓库 **Settings → Pages → Build and deployment** 中把 **Source** 选为 **GitHub Actions**。
-
-工作流会自动完成：
-
-- 按仓库名生成 `TARO_PUBLIC_PATH`，适配 `https://<username>.github.io/<repo>/` 子路径；
-- 注入 `SITE_URL`，替换 HTML 里 canonical、Open Graph、JSON-LD 的占位符；
-- 生成 `robots.txt`、`sitemap.xml`、`.nojekyll`，并复制 `og-cover.png` 分享图。
-
-本地验证生产产物：
-
-```bash
-TARO_PUBLIC_PATH=/roomcraft/ \
-SITE_URL=https://<username>.github.io/roomcraft/ \
-npm run build:h5:pages
-
-npx serve dist-h5
-```
-
-H5 使用 hash 路由，静态托管无需额外的 404 回退。若仓库名为 `<username>.github.io`（用户主页），工作流会自动改用根路径。
-
-### App / RN
-
-RN 构建脚本已保留，但依赖与适配尚未接入，当前不可用。
-
-## SEO
-
-[src/index.html](src/index.html) 已内置面向搜索引擎与社交分享的元信息：
-
-- `<title>`、`description`、`keywords`、`robots` 与 `lang="zh-CN"`；
-- `canonical`、Open Graph、Twitter Card（构建时注入真实域名与分享图）；
-- `WebApplication` JSON-LD 结构化数据；
-- 无 JavaScript 时的 `<noscript>` 简介，以及内联 SVG favicon。
-
-`npm run build:h5:pages` 会在产物中额外生成 `robots.txt`、`sitemap.xml` 和 `.nojekyll`。上线后可在 [Google Search Console](https://search.google.com/search-console) 与 [Bing Webmaster Tools](https://www.bing.com/webmasters) 提交 `sitemap.xml`，加速收录。单页应用的实际内容由 JavaScript 渲染，建议同时完善仓库简介与 Topics（如 `threejs`、`taro`、`3d`、`interior-design`、`room-planner`）提升 GitHub 搜索曝光。
-
 ## 目录结构
 
 ```

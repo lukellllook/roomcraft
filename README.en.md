@@ -89,47 +89,6 @@ After starting, open <http://localhost:10086>.
 
 > `build:h5:pages` outputs to `dist-h5/`, which does not overwrite `dist/` from `build:h5`.
 
-## Deployment
-
-### H5 / GitHub Pages
-
-The repository ships with [deploy-pages.yml](.github/workflows/deploy-pages.yml): push to the `main` branch (or trigger the workflow manually) to automatically build and publish to GitHub Pages.
-
-Before the first deployment, set **Source** to **GitHub Actions** under **Settings → Pages → Build and deployment** in the repository.
-
-The workflow automatically:
-
-- generates `TARO_PUBLIC_PATH` from the repository name to suit the `https://<username>.github.io/<repo>/` sub-path;
-- injects `SITE_URL` to replace the placeholders for canonical, Open Graph, and JSON-LD in the HTML;
-- generates `robots.txt`, `sitemap.xml`, and `.nojekyll`, and copies the `og-cover.png` share image.
-
-To verify the production build locally:
-
-```bash
-TARO_PUBLIC_PATH=/roomcraft/ \
-SITE_URL=https://<username>.github.io/roomcraft/ \
-npm run build:h5:pages
-
-npx serve dist-h5
-```
-
-The H5 build uses hash routing, so static hosting needs no extra 404 fallback. If the repository is named `<username>.github.io` (a user homepage), the workflow automatically switches to the root path.
-
-### App / RN
-
-The RN build scripts are retained, but dependencies and adaptations have not been wired up yet, so it is currently unavailable.
-
-## SEO
-
-[src/index.html](src/index.html) already includes metadata for search engines and social sharing:
-
-- `<title>`, `description`, `keywords`, `robots`, and `lang="zh-CN"`;
-- `canonical`, Open Graph, and Twitter Card (populated with the real domain and share image at build time);
-- `WebApplication` JSON-LD structured data;
-- a `<noscript>` introduction for no-JavaScript environments, plus an inline SVG favicon.
-
-`npm run build:h5:pages` additionally generates `robots.txt`, `sitemap.xml`, and `.nojekyll` in the output. After going live, you can submit `sitemap.xml` to [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters) to speed up indexing. Since the actual content of a single-page app is rendered by JavaScript, it is also recommended to refine the repository description and Topics (e.g. `threejs`, `taro`, `3d`, `interior-design`, `room-planner`) to improve GitHub search visibility.
-
 ## Directory Structure
 
 ```
